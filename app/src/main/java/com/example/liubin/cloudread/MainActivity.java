@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         View headerView = mBinding.navView.getHeaderView(0);
-
+//ss
         NavHeaderMainBinding mainBinding =DataBindingUtil.bind(headerView);
 
         mBinding.navView.setItemIconTintList(null);
