@@ -12,4 +12,6 @@
 
     <!--透明色-->
     <color name="colorTransparent">#00000000</color>
+    <color name="colorContent">#ff333333</color>
+    <color name="colorTitle">#666</color>
 </resources>
