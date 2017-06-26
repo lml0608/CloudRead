@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         //使侧边栏的图标保持原来颜色，不是黑白
         mBinding.navView.setItemIconTintList(null);
 
+
         Glide.with(this)
                 .load(ConstansImageUrl.IC_AVATAR)
                 .crossFade(500)
