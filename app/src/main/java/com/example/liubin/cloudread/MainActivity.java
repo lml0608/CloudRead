@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.ll_nav_homepage:
                         NavHomePageActivity.startHome(MainActivity.this);
                         mBinding.drawerLayout.closeDrawers();
+                        item.setCheckable(false);
                         return true;
 //                    case R.id.ll_nav_scan_download:
 //                        NavDownloadActivity.start(MainActivity.this);
@@ -147,18 +148,5 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-
-            case R.id.home:
-                invalidateOptionsMenu();
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
-    }
 }
