@@ -14,4 +14,13 @@
     <color name="colorTransparent">#00000000</color>
     <color name="colorContent">#ff333333</color>
     <color name="colorTitle">#666</color>
+
+
+    <!--主页tab背景-->
+    <color name="colorTabBg">#ffffffff</color>
+    <color name="colorTabTextCheck">#ffce3d3a</color>
+    <color name="colorTabTextNormal">#585858</color>
+    <color name="colorTabLine">#ffce3d3a</color>
+    <color name="itemLowBackground">#d9d9d9</color>
+    <color name="colorTabText">#585858</color>
 </resources>

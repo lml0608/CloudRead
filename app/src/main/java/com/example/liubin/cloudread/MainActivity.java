@@ -3,20 +3,29 @@ package com.example.liubin.cloudread;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.liubin.cloudread.app.ConstansImageUrl;
 import com.example.liubin.cloudread.databinding.ActivityMainBinding;
 import com.example.liubin.cloudread.databinding.NavHeaderMainBinding;
+import com.example.liubin.cloudread.ui.book.BookFragment;
+import com.example.liubin.cloudread.ui.gank.GankFragment;
 import com.example.liubin.cloudread.ui.menu.NavHomePageActivity;
+import com.example.liubin.cloudread.ui.one.OneFragment;
 import com.example.liubin.cloudread.utils.GlideCircleTransform;
+import com.example.liubin.cloudread.view.MyFragmentPagerAdapter;
+
+import java.util.ArrayList;
 
 import static com.example.liubin.cloudread.R.id.toolbar;
 
@@ -24,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mBinding;
     private ActionBarDrawerToggle mDrawerToggle;
+    private ViewPager vpContent;
+    private ImageView llTitleDou;
+    private ImageView llTitleOne;
+    private ImageView llTitleGank;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mBinding.include.toolbar);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        initView();
 
         //侧边栏头布局
         View headerView = mBinding.navView.getHeaderView(0);
@@ -80,7 +96,112 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        initContentFragment();
+
+
     }
+
+    private void initView() {
+        //viewpager
+        vpContent = mBinding.include.vpContent;
+        llTitleGank = mBinding.include.ivTitleGank;
+        llTitleOne = mBinding.include.ivTitleOne;
+        llTitleDou = mBinding.include.ivTitleDou;
+    }
+
+    private void initContentFragment() {
+
+        ArrayList<Fragment> mFragmentList = new ArrayList<>();
+        mFragmentList.add(new GankFragment());
+        mFragmentList.add(new OneFragment());
+        mFragmentList.add(new BookFragment());
+        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), mFragmentList);
+
+        vpContent.setAdapter(adapter);
+        vpContent.setOffscreenPageLimit(2);
+        vpContent.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                switch (position) {
+                    case 0:
+                        llTitleGank.setSelected(true);
+                        llTitleOne.setSelected(false);
+                        llTitleDou.setSelected(false);
+                        break;
+
+                    case 1:
+                        llTitleGank.setSelected(false);
+                        llTitleOne.setSelected(true);
+                        llTitleDou.setSelected(false);
+                        break;
+
+                    case 2:
+                        llTitleGank.setSelected(false);
+                        llTitleOne.setSelected(false);
+                        llTitleDou.setSelected(true);
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        mBinding.include.ivTitleGank.setSelected(true);
+        vpContent.setCurrentItem(0);
+
+
+        //电影栏
+        llTitleOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vpContent.getCurrentItem() != 1) {
+
+                    llTitleOne.setSelected(true);
+                    llTitleGank.setSelected(false);
+                    llTitleDou.setSelected(false);
+                    vpContent.setCurrentItem(1);
+                }
+            }
+        });
+
+        llTitleGank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vpContent.getCurrentItem() != 0) {
+
+                    llTitleOne.setSelected(false);
+                    llTitleGank.setSelected(true);
+                    llTitleDou.setSelected(false);
+                    vpContent.setCurrentItem(0);
+                }
+            }
+        });
+
+        llTitleDou.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vpContent.getCurrentItem() != 2) {
+
+                    llTitleOne.setSelected(false);
+                    llTitleGank.setSelected(false);
+                    llTitleDou.setSelected(true);
+                    vpContent.setCurrentItem(2);
+                }
+            }
+        });
+
+    }
+
 
 
     private void setUpNavigationView() {

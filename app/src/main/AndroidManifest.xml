@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.one.TransitionActivity"
+            android:name=".ui.TransitionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ViewBigPicTheme">
             <intent-filter>

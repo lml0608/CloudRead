@@ -1,4 +1,4 @@
-package com.example.liubin.cloudread.ui.one;
+package com.example.liubin.cloudread.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
